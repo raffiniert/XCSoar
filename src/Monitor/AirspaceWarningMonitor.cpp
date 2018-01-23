@@ -38,6 +38,7 @@ Copyright_License {
 #include "Airspace/ProtectedAirspaceWarningManager.hpp"
 #include "Formatter/TimeFormatter.hpp"
 #include "Input/InputQueue.hpp"
+#include "Message.hpp"
 
 class AirspaceWarningWidget final
   : public QuestionWidget, private ActionListener {
