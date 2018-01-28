@@ -215,16 +215,8 @@ AirspaceWarningMonitor::Check()
       if(airspace->IsActive())
         {
           if(state==AirspaceWarning::WARNING_INSIDE){
-            StaticString<256> msg;
-            static unsigned warning_inside_debug_counter;
-            msg.Format(_T("%s %u"), _T("WARNING_INSIDE"), ++warning_inside_debug_counter);
-            Message::AddMessage(msg);
             InputEvents::processGlideComputer(GCE_AIRSPACE_INSIDE);
           }else if(state==AirspaceWarning::WARNING_FILTER || state==AirspaceWarning::WARNING_GLIDE){
-            StaticString<256> msg;
-            static unsigned warning_near_debug_counter;
-            msg.Format(_T("%s %u"), _T("WARNING_NEAR"), ++warning_near_debug_counter);
-            Message::AddMessage(msg);
             InputEvents::processGlideComputer(GCE_AIRSPACE_NEAR);
           }
         }
