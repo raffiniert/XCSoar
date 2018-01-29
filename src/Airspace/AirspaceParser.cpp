@@ -33,13 +33,17 @@ Copyright_License {
 #include "Util/NumberParser.hpp"
 #include "Util/Macros.hpp"
 #include "Geo/Math.hpp"
+#include "Geo/Flat/FlatPoint.hpp"
+#include "Geo/Flat/FlatGeoPoint.hpp"
 #include "IO/LineReader.hpp"
 #include "Airspace/AirspacePolygon.hpp"
 #include "Airspace/AirspaceCircle.hpp"
 #include "Geo/GeoVector.hpp"
 #include "Engine/Airspace/AirspaceClass.hpp"
 #include "Util/StaticString.hxx"
+#include "Math/Point2D.hpp"
 
+#include <math.h>
 #include <tchar.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -170,7 +174,29 @@ struct TempAirspaceType
   void
   AddPolygon(Airspaces &airspace_database)
   {
-    if (points.size() < 3)
+    if (points.size() == 2) // expand cable to area
+    {
+//      const auto &projection = airspace_database.GetProjection(); // invalid until posfix
+      FlatProjection projection(points[0]);
+      const FlatPoint pt1 = projection.ProjectFloat(points[0]);
+      const FlatPoint pt2 = projection.ProjectFloat(points[1]);
+      FlatPoint vec = (pt2 - pt1);
+      fixed dist = pt1.Distance(pt2);
+
+      if(dist == fixed(0)) // too close
+        return;
+
+      // unit vector and scale for offset
+      fixed scale = fixed(0.1) / dist;
+      vec = FlatPoint(vec.y * scale, -vec.x * scale);
+
+      // set edges
+      points[0] = projection.Unproject(pt1 + vec);
+      points[1] = projection.Unproject(pt1 - vec);
+      points.push_back(projection.Unproject(pt2 - vec));
+      points.push_back(projection.Unproject(pt2 + vec));
+    }
+    else if (points.size() < 3)
       return;
 
     AbstractAirspace *as = new AirspacePolygon(points);
