@@ -140,7 +140,7 @@ ButtonPanel::VerticalRange(PixelRect rc, unsigned start, unsigned end)
 }
 
 PixelRect
-ButtonPanel::HorizontalRange(PixelRect rc, unsigned start, unsigned end)
+ButtonPanel::HorizontalRange(PixelRect rc, unsigned start, unsigned end, bool align_top)
 {
   const unsigned n = end - start;
   assert(n > 0);
