@@ -211,7 +211,7 @@ ButtonPanel::FitButtonRow(unsigned start, unsigned total_width) const
 }
 
 PixelRect
-ButtonPanel::BottomOrTopLayout(PixelRect rc, align_top)
+ButtonPanel::BottomOrTopLayout(PixelRect rc, bool align_top)
 {
   assert(!buttons.empty());
 
@@ -281,7 +281,7 @@ ButtonPanel::BottomOrTopLayout(PixelRect rc, align_top)
 }
 
 PixelRect
-ButtonPanel::BottomOrTopLayout(align_top)
+ButtonPanel::BottomOrTopLayout(bool align_top)
 {
   return BottomOrTopLayout(parent.GetClientRect(), align_top);
 }
