@@ -155,14 +155,14 @@ ButtonPanel::HorizontalRange(PixelRect rc, unsigned start, unsigned end)
   const unsigned width = total_width / n;
   assert(width > 0);
 
-  if(!align_top){
-    PixelRect button_rc(rc.left, rc.bottom - row_height,
-                        rc.left + width, rc.bottom);
-    rc.bottom -= row_height;
-  }else{
+  if(align_top){
     PixelRect button_rc(rc.left, rc.top,
                       rc.left + width, rc.top + row_height);
     rc.top += row_height;
+  }else{
+    PixelRect button_rc(rc.left, rc.bottom - row_height,
+                        rc.left + width, rc.bottom);
+    rc.bottom -= row_height;
   }
 
   for (unsigned i = start; i < end; ++i) {
