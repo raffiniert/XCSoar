@@ -153,7 +153,7 @@ private:
 
   PixelRect VerticalRange(PixelRect rc, unsigned start, unsigned end);
 
-  PixelRect HorizontalRange(PixelRect rc, unsigned start, unsigned end);
+  PixelRect HorizontalRange(PixelRect rc, unsigned start, unsigned end, bool align_top);
 
   void SetSelectedIndex(unsigned _index);
   bool SelectPrevious();
