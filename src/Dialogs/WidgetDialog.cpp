@@ -160,14 +160,14 @@ WidgetDialog::AutoSize()
   if (max_size.cx < parent_size.cx)
     rc.right = rc.left + max_size.cx;
 
-  PixelRect remaining = buttons.BottomLayout(rc);
+  PixelRect remaining = buttons.BottomOrTopLayout(rc, false);
   PixelSize remaining_size = remaining.GetSize();
 
   if (remaining_size.cy > max_size.cy)
     rc.bottom -= remaining_size.cy - max_size.cy;
 
   Resize(rc.GetSize());
-  widget.Move(buttons.BottomLayout());
+  widget.Move(buttons.BottomOrTopLayout(false));
 
   MoveToCenter();
 }

@@ -48,7 +48,11 @@ ButtonPanelWidget::UpdateLayout(const PixelRect &rc)
     return buttons->LeftLayout(rc);
 
   case Alignment::BOTTOM:
-    return buttons->BottomLayout(rc);
+    return buttons->BottomOrTopLayout(rc, false);
+  }
+
+  case Alignment::TOP:
+    return buttons->BottomOrTopLayout(rc, true);
   }
 
   gcc_unreachable();
