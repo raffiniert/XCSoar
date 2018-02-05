@@ -49,7 +49,7 @@ ButtonPanelWidget::UpdateLayout(const PixelRect &rc)
 
   case Alignment::BOTTOM:
     return buttons->BottomOrTopLayout(rc, false);
-  
+
   case Alignment::TOP:
     return buttons->BottomOrTopLayout(rc, true);
   }
