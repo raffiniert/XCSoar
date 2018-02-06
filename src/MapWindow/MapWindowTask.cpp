@@ -111,7 +111,6 @@ MapWindow::DrawTaskOffTrackIndicator(Canvas &canvas)
     return;
 
   const GeoPoint target = current_leg.location_remaining;
-  GeoVector vec(Basic().location, target);
 
   if ((Basic().track - vec.bearing).AsDelta().AbsoluteDegrees() < fixed(10))
     // insignificant error
