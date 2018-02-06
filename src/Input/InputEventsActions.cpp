@@ -612,7 +612,7 @@ InputEvents::eventAddWaypoint(const TCHAR *misc)
   if (StringIsEqual(misc, _T("takeoff"))) {
     if (basic.location_available && calculated.terrain_valid) {
       ScopeSuspendAllThreads suspend;
-      way_points.AddTakeoffPoint(basic.location, calculated.terrain_altitude);
+      //way_points.AddTakeoffPoint(basic.location, calculated.terrain_altitude);
       way_points.Optimise();
     }
   } else {

@@ -32,3 +32,12 @@ build/local-config.mk
 *.pyc
 *.pyo
 *.bak
+KoboRoot.tgz
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/XCSoar.iml
+.idea/scopes/scope_settings.xml
+ide/vagrant/get-pip.py
