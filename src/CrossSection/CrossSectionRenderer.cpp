@@ -156,10 +156,10 @@ CrossSectionRenderer::PaintAircraft(Canvas &canvas, const ChartRenderer &chart,
   line[1].x = rc.left;
   line[1].y = line[0].y;
   line[2].x = line[1].x;
-  line[2].y = line[0].y - (line[0].x - line[1].x) / 2;
-  line[3].x = (line[1].x + line[0].x) / 2;
+  line[2].y = line[0].y - (line[0].x - line[1].x);
+  line[3].x = (line[1].x + line[0].x);
   line[3].y = line[0].y;
-  canvas.DrawTriangleFan(line, 8);
+  canvas.DrawTriangleFan(line, 4);
 }
 
 void
