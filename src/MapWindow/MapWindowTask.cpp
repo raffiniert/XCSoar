@@ -98,7 +98,6 @@ MapWindow::DrawRoute(Canvas &canvas)
 void
 MapWindow::DrawTaskOffTrackIndicator(Canvas &canvas)
 {
-  return;
   if (Calculated().circling 
       || !Basic().location_available
       || !Basic().track_available
