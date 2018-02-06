@@ -127,7 +127,7 @@ ThermalBandRenderer::_DrawThermalBand(const MoreData &basic,
     // but do draw if start height needs to be drawn
     return;
 
-  const Pen *fpen = is_infobox ? nullptr : &look.pen;
+  const Pen *fpen = &look.pen;
 
   // position of thermal band
   if (numtherm > 1) {
@@ -149,7 +149,7 @@ ThermalBandRenderer::_DrawThermalBand(const MoreData &basic,
   if (basic.NavAltitudeAvailable()) {
     const Pen &pen = is_infobox && look.inverse
       ? look.white_pen : look.black_pen;
-    chart.DrawLine(fixed(1), h,
+    chart.DrawLine(fixed(0), h,
                    settings_computer.polar.glide_polar_task.GetMC(), h, pen);
 
     if (is_infobox && look.inverse)
