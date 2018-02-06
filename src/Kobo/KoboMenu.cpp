@@ -50,7 +50,7 @@ enum Buttons {
 };
 
 static DialogSettings dialog_settings;
-static SingleWindow *global_main_window; 
+static SingleWindow *global_main_window;
 static DialogLook *global_dialog_look;
 
 const DialogSettings &

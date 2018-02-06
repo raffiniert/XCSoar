@@ -36,7 +36,7 @@ class ButtonPanel;
 class ButtonPanelWidget : public Widget {
 public:
   enum class Alignment {
-    AUTO, BOTTOM, LEFT, TOP
+    AUTO, BOTTOM, TOP, LEFT
   };
 
 private:
