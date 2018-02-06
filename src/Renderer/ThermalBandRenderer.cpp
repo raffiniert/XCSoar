@@ -127,7 +127,7 @@ ThermalBandRenderer::_DrawThermalBand(const MoreData &basic,
     // but do draw if start height needs to be drawn
     return;
 
-  const Pen *fpen = is_infobox ? nullptr : &look.pen;
+  const Pen *fpen = &look.pen;
 
   // position of thermal band
   if (numtherm > 1) {
