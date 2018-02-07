@@ -157,7 +157,7 @@ ThermalBandRenderer::_DrawThermalBand(const MoreData &basic,
     else
       chart.GetCanvas().SelectBlackBrush();
     chart.DrawDot(settings_computer.polar.glide_polar_task.GetMC(),
-                  h, Layout::Scale(2));
+                  h, Layout::Scale(3));
   }
 }
 
