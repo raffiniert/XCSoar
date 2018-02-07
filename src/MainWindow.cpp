@@ -322,7 +322,7 @@ MainWindow::ReinitialiseLayoutTA(PixelRect rc,
   const PixelRect main_rect = GetMainRect();
 
   rc.right = main_rect.right;
-  rc.left = rc.right - size;
+  rc.left = rc.right - sz;
   rc.top = rc.bottom - sz;
   thermal_assistant.Move(rc);
 }
