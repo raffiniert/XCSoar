@@ -1,4 +1,11 @@
 Version 6.8.11 - not yet releases
+* GCE-events
+  - draw thermalband with an outline also in infobox
+  - double the size of the height-indicating arrow on crosssection
+  - lower max auto-zoom-settings for slow flying things
+  - move airspace-buttons over airspace-warning for better usability
+  - added 2-point airspaces to warn about cables etc.
+  - added GCE-events for AIRSPACE_NEAR, AIRSPACE_INSIDE and WIND_CHANGE
 * terrain
   - fix yet another crash bug (libJasper)
 * Android

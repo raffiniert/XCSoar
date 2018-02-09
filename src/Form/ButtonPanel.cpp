@@ -50,7 +50,7 @@ ButtonPanel::UpdateLayout(const PixelRect rc)
   const bool landscape = rc.right - rc.left > rc.bottom - rc.top;
   return landscape
     ? LeftLayout(rc)
-    : BottomLayout(rc);
+    : BottomOrTopLayout(rc, false);
 }
 
 PixelRect
@@ -140,7 +140,7 @@ ButtonPanel::VerticalRange(PixelRect rc, unsigned start, unsigned end)
 }
 
 PixelRect
-ButtonPanel::HorizontalRange(PixelRect rc, unsigned start, unsigned end)
+ButtonPanel::HorizontalRange(PixelRect rc, unsigned start, unsigned end, bool align_top)
 {
   const unsigned n = end - start;
   assert(n > 0);
@@ -155,15 +155,24 @@ ButtonPanel::HorizontalRange(PixelRect rc, unsigned start, unsigned end)
   const unsigned width = total_width / n;
   assert(width > 0);
 
-  PixelRect button_rc(rc.left, rc.bottom - row_height,
-                      rc.left + width, rc.bottom);
-  rc.bottom -= row_height;
-
-  for (unsigned i = start; i < end; ++i) {
-    buttons[i]->Move(button_rc);
-
-    button_rc.left = button_rc.right;
-    button_rc.right += width;
+  if(align_top){
+    PixelRect button_rc(rc.left, rc.top,
+                        rc.left + width, rc.top + row_height);
+    rc.top += row_height;
+    for (unsigned i = start; i < end; ++i) {
+      buttons[i]->Move(button_rc);
+      button_rc.left = button_rc.right;
+      button_rc.right += width;
+    }
+  }else{
+    PixelRect button_rc(rc.left, rc.bottom - row_height,
+                        rc.left + width, rc.bottom);
+    rc.bottom -= row_height;
+    for (unsigned i = start; i < end; ++i) {
+      buttons[i]->Move(button_rc);
+      button_rc.left = button_rc.right;
+      button_rc.right += width;
+    }
   }
 
   return rc;
@@ -205,7 +214,7 @@ ButtonPanel::FitButtonRow(unsigned start, unsigned total_width) const
 }
 
 PixelRect
-ButtonPanel::BottomLayout(PixelRect rc)
+ButtonPanel::BottomOrTopLayout(PixelRect rc, bool align_top)
 {
   assert(!buttons.empty());
 
@@ -268,16 +277,16 @@ ButtonPanel::BottomLayout(PixelRect rc)
   for (int i = rows.size() - 1; i >= 0; --i) {
     const auto &row = rows[i];
 
-    rc = HorizontalRange(rc, row.start, row.end);
+    rc = HorizontalRange(rc, row.start, row.end, align_top);
   }
 
   return rc;
 }
 
 PixelRect
-ButtonPanel::BottomLayout()
+ButtonPanel::BottomOrTopLayout(bool align_top)
 {
-  return BottomLayout(parent.GetClientRect());
+  return BottomOrTopLayout(parent.GetClientRect(), align_top);
 }
 
 void

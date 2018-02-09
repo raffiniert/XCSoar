@@ -318,7 +318,11 @@ MainWindow::ReinitialiseLayoutTA(PixelRect rc,
 {
   UPixelScalar sz = std::min(layout.control_size.cy,
                              layout.control_size.cx) * 2;
-  rc.right = rc.left + sz;
+
+  const PixelRect main_rect = GetMainRect();
+
+  rc.right = main_rect.right;
+  rc.left = rc.right - sz;
   rc.top = rc.bottom - sz;
   thermal_assistant.Move(rc);
 }
